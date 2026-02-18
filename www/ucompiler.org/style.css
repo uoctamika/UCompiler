@@ -1,0 +1,38 @@
+body {
+    font-family: 'Choco Cooky';
+    /* background: #000000; */
+}
+
+
+.wel{
+    text-align:center;
+    margin-top:50;
+}
+
+.sub{
+    text-align: center;
+    margin-top: 80;
+
+}
+
+
+hr {
+  border: none;
+  height: 2px;
+  background: black;
+  margin: 20px 0;
+}
+
+
+.wel::after {
+    content: "";
+    color: #ffffff;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    background-image: url("logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
