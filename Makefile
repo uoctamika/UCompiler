@@ -4,23 +4,27 @@ CXX := gcc
 BUILD ?= debug
 TARGET := build/app
 SUBDIRS := source
-
 BUILD_DIR := $(CURDIR)/build
-export BUILD_DIR
-
-INCLUDES := -Iinclude -Ilib -Isrc
+INCLUDES := -I$(CURDIR)/include
+LDFLAG := -lstdc++
 
 ifeq ($(BUILD),debug)
-CXXFLAGS := -std=c++23 -g -O0 -Wall -Wextra -lstdc++ $(INCLUDES)
+CXXFLAGS := -std=c++23 -g -O0 -Wall -Wextra -Wpedantic $(INCLUDES)
 MODETXT := DEBUG
+
 else ifeq ($(BUILD),release)
-CXXFLAGS := -std=c++23 -O3 -DNDEBUG -lstdc++ $(INCLUDES)
+CXXFLAGS := -std=c++23 -O2 -DNDEBUG $(INCLUDES)
 MODETXT := RELEASE
+
+else ifeq ($(BUILD),testing)
+CXXFLAGS := -std=c++23 -O2 -DNDEBUG -Wall -Wextra -Wpedantic -Werror $(INCLUDES)
+MODETXT := TESTING
+
 else
 $(error Unknown BUILD type)
 endif
 
-export CXX CXXFLAGS BUILD
+export CXX CXXFLAGS BUILD BUILD_DIR
 
 MAKEFLAGS += --no-print-directory
 
@@ -53,7 +57,7 @@ subdirs:
 link:
 	$(Q)$(call log,LINK,$(TARGET))
 	@mkdir -p $(BUILD_DIR)
-	$(Q)$(CXX) $(OBJS) -o $(TARGET) $(CXXFLAGS)
+	$(Q)$(CXX) $(OBJS) -o $(TARGET) $(LDFLAG)
 
 clean:
 	$(Q)$(call log,CLEAN,objects)
