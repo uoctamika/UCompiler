@@ -2,7 +2,7 @@ SHELL := /bin/bash
 
 CXX := gcc
 BUILD ?= debug
-TARGET := build/app
+TARGET := build/uuc
 SUBDIRS := source
 BUILD_DIR := $(CURDIR)/build
 INCLUDES := -I$(CURDIR)/include
