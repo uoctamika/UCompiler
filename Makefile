@@ -16,17 +16,21 @@ PCH_FILE := $(BUILD_DIR)/pch.h.gch
 LDFLAGS :=
 
 ifeq ($(BUILD),debug)
-CFLAGS := -std=gnu11 -g -O0 -Wall -Wextra -Wpedantic -Wstrict-prototypes $(INCLUDES)
+CFLAGS := -std=gnu11 -g -O0 -Wall -Wextra -Wpedantic -Wstrict-prototypes -DPCH_COMPILED $(INCLUDES)
 MODETXT := DEBUG
 else ifeq ($(BUILD),debugres)
-CFLAGS := -std=gnu11 -O0 -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wundef -Wformat -Wsign-conversion -Wcast-align -Wstrict-prototypes $(INCLUDES)
+CFLAGS := -std=gnu11 -O0 -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wundef -Wformat -Wsign-conversion -Wcast-align -Wstrict-prototypes -DPCH_COMPILED $(INCLUDES)
 MODETXT := DEBUGRES
 else ifeq ($(BUILD),release)
-CFLAGS := -std=gnu11 -O2 -DNDEBUG $(INCLUDES)
+CFLAGS := -std=gnu11 -O2 -DNDEBUG -DPCH_CONPILED $(INCLUDES)
 MODETXT := RELEASE
 else ifeq ($(BUILD),restriction)
 CFLAGS := -std=gnu11 -O0 -Wall -Wextra -Wpedantic -Werror -Wstrict-prototypes $(INCLUDES)
 MODETXT := RESTRICTION
+else ifeq ($(BUILD),pch)
+CFLAGS := -std=gnu11 -O0 -g -DPCH_COMPILED $(INCLUDES)
+MODETXT := PCH
+
 else
 $(error Unknown BUILD type)
 endif
