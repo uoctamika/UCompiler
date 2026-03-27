@@ -6,7 +6,7 @@
 * Type         : Dummy
 * Description  : Dummy object for testing or user space case mode
 *
-* Author       : UocDev
+* Author       : Uoc Tamika
 * Author ID    : 1
 *
 * License      : GNU GPL V2
@@ -26,9 +26,9 @@
 * allocation system is unavailable or in a recovery state.
 */
 
-#define BUFFER 256
-#define ALLOCATION 100
-#define MAX_USAGE 500
-#define MODE_ID 1
+#define BUFFER 1024
+// #define ALLOCATION 100
+#define MAX_USAGE 2024
+// #define MODE_ID 1
 
 #endif
